@@ -53,7 +53,7 @@ data "aws_iam_policy_document" "allow_access" {
     sid = "Allow bucket access from cloudfront to static website"
     principals {
       type        = "Service"
-      identifiers = ["cloudfront.amazonaws.com"] #all can have access to this bucket and its objects
+      identifiers = ["cloudfront.amazonaws.com"] 
     }
 
     effect = "Allow"
@@ -64,7 +64,7 @@ data "aws_iam_policy_document" "allow_access" {
     ]
 
     resources = [
-      aws_s3_bucket.site_bucket.arn,
+      # aws_s3_bucket.site_bucket.arn,
       "${aws_s3_bucket.site_bucket.arn}/*",
     ]
 
@@ -110,7 +110,7 @@ resource "aws_s3_bucket_website_configuration" "site_hosting" {
 module "template_files" {
     source = "hashicorp/dir/template"
 
-    base_dir = "${path.module}/../../files"
+    base_dir = "${path.module}/../../objects"
 }
 
 

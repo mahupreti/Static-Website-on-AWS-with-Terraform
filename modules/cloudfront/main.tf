@@ -59,34 +59,4 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     acm_certificate_arn = var.acm_certificate_arn
     ssl_support_method = "sni-only"
   }
-
-
 }
-
-# data "aws_iam_policy_document" "allow_access" {
-#   statement {
-#     sid = "Allow bucket access from cloudfront to static website"
-#     principals {
-#       type        = "AWS"
-#       identifiers = ["*"] #all can have access to this bucket and its objects
-#     }
-
-#     effect = "Allow"
-
-#     actions = [
-#       "s3:GetObject",
-#       "s3:PutObject"
-#     ]
-
-#     resources = [
-#       "mylogs.s3.amazonaws.com"
-#     ]
-
-#     condition {
-#       test= "StringEquals"
-#       variable= "aws:SourceArn"
-
-#       values = [aws_cloudfront_distribution.s3_distribution.arn]
-#     }
-#   }
-# }
